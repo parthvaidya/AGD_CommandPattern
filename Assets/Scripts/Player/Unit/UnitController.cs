@@ -4,6 +4,7 @@ using Command.Actions;
 using System.Collections;
 using System;
 using Object = UnityEngine.Object;
+using Command.Commands;
 
 namespace Command.Player
 {
@@ -41,6 +42,8 @@ namespace Command.Player
             unitView.transform.position = positionToSet;
             unitView.SetUnitIndicator(false);
         }
+
+        public void ProcessUnitCommand(UnitCommand commandToProcess) => GameService.Instance.CommandInvoker.ProcessCommand(commandToProcess);
 
         private void InitializeVariables()
         {
