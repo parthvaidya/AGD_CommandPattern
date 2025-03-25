@@ -1,6 +1,6 @@
-namespace Command.Actions
-{
-    public enum ActionType
+
+
+    public enum CommandType
     {
         None,
         Attack,
@@ -11,4 +11,3 @@ namespace Command.Actions
         BerserkAttack,
         ThirdEye
     }
-}
