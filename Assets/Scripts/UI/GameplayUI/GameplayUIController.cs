@@ -14,6 +14,8 @@ namespace Command.UI
             this.gameplayView.SetController(this);
         }
 
+        public void OnUndoButtonClicked() => GameService.Instance.CommandInvoker.Undo();
+
         public void Show() => gameplayView.EnableView();
 
         public void SetTurnNumber(int turnNumber) => gameplayView.SetTurnText($"Turn: {turnNumber}");
