@@ -6,6 +6,7 @@ namespace Command.Commands
     public class CommandInvoker
     {
         private Stack<ICommand> commandRegistry = new Stack<ICommand>();
+        public CommandInvoker() => SubscribeToEvents();
 
         public void ProcessCommand(ICommand commandToProcess)
         {
@@ -17,6 +18,14 @@ namespace Command.Commands
         {
             if (!RegistryEmpty() && CommandBelongsToActivePlayer())
                 commandRegistry.Pop().Undo();
+        }
+
+        private void SubscribeToEvents() => GameService.Instance.EventService.OnReplayButtonClicked.AddListener(SetReplayStack);
+
+        public void SetReplayStack()
+        {
+            GameService.Instance.ReplayService.SetCommandStack(commandRegistry);
+            commandRegistry.Clear();
         }
 
         public void ExecuteCommand(ICommand commandToExecute) => commandToExecute.Execute();
